@@ -1,3 +1,6 @@
+from datetime import datetime
+
+
 def mask_info(info):
     if info.startswith("M") or info.startswith("V") or info.startswith("М"):
         card = info[:-17]
@@ -9,3 +12,7 @@ def mask_info(info):
         masked_number = f"**{account_number[-4:]}"
         return f"Счет {masked_number}"
 
+
+def format_transaction_date(date_str):
+    date_obj = datetime.strptime(date_str, "%Y-%m-%dT%H:%M:%S.%f")
+    return date_obj.strftime("%d.%m.%Y")
