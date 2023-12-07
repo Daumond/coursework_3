@@ -1,5 +1,5 @@
 def mask_info(info):
-    if info.startswith("M") or info.startswith("V"):
+    if info.startswith("M") or info.startswith("V") or info.startswith("М"):
         card = info[:-17]
         card_number = info[-16:]
         masked_number = f"{card_number[:4]} {card_number[4:6]}** **** {card_number[-4:]}"
