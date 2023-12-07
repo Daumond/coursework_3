@@ -16,3 +16,20 @@ def mask_info(info):
 def format_transaction_date(date_str):
     date_obj = datetime.strptime(date_str, "%Y-%m-%dT%H:%M:%S.%f")
     return date_obj.strftime("%d.%m.%Y")
+
+
+def format_transaction(transaction):
+    if 'from' in transaction:
+        from_info = f"{mask_info(transaction['from'])} -> "
+    else:
+        from_info = ""
+
+    to_info = mask_info(transaction['to'])
+
+    formatted_output = (
+        f"{format_transaction_date(transaction['date'])} {transaction['description']}\n"
+        f"{from_info}{to_info}\n"
+        f"{transaction['operationAmount']['amount']} {transaction['operationAmount']['currency']['name']}"
+    )
+    return formatted_output
+
