@@ -3,12 +3,14 @@ import json
 
 
 def read_json_file(file_path):
+    """Открываем файл на чтение, возвращаем информацию списком"""
     with open(file_path, 'r', encoding='utf-8') as file:
         data = json.load(file)
     return data
 
 
 def mask_info(info):
+    """Максирует информацию о карте или счете"""
     if info.startswith("M") or info.startswith("V") or info.startswith("М"):
         card = info[:-17]
         card_number = info[-16:]
@@ -21,11 +23,13 @@ def mask_info(info):
 
 
 def format_transaction_date(date_str):
+    """Преобразовывает дату в упрощенный формат"""
     date_obj = datetime.strptime(date_str, "%Y-%m-%dT%H:%M:%S.%f")
     return date_obj.strftime("%d.%m.%Y")
 
 
 def format_transaction(transaction):
+    """Собирает воедино информацию об операции. Если нет отправителя, то выводится только инфо о получателе"""
     if 'from' in transaction:
         from_info = f"{mask_info(transaction['from'])} -> "
     else:
@@ -39,4 +43,3 @@ def format_transaction(transaction):
         f"{transaction['operationAmount']['amount']} {transaction['operationAmount']['currency']['name']}"
     )
     return formatted_output
-
