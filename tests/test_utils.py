@@ -16,18 +16,18 @@ def test_format_transaction_date():
 
 def test_format_operation():
     assert utils.format_transaction({
-    "id": 556488059,
-    "state": "CANCELED",
-    "date": "2019-05-17T01:50:00.166954",
-    "operationAmount": {
-      "amount": "74604.56",
-      "currency": {
-        "name": "USD",
-        "code": "USD"
-      }
-    },
-    "description": "Открытие счета",
-    "to": "Счет 87027170579332481295"
-  }) == ('17.05.2019 Открытие счета\n'
- 'Счет **1295\n'
- '74604.56 USD')
+        "id": 556488059,
+        "state": "CANCELED",
+        "date": "2019-05-17T01:50:00.166954",
+        "operationAmount": {
+            "amount": "74604.56",
+            "currency": {
+                "name": "USD",
+                "code": "USD"
+            }
+        },
+        "description": "Открытие счета",
+        "to": "Счет 87027170579332481295"
+    }) == ('17.05.2019 Открытие счета\n'
+           'Счет **1295\n'
+           '74604.56 USD')
