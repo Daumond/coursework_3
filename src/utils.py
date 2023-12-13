@@ -11,15 +11,15 @@ def read_json_file(file_path):
 
 def mask_info(info):
     """Максирует информацию о карте или счете"""
-    if info.startswith("M") or info.startswith("V") or info.startswith("М"):
+    if info.startswith("Счет"):
+        account_number = info[-20:]
+        masked_number = f"**{account_number[-4:]}"
+        return f"Счет {masked_number}"
+    else:
         card = info[:-17]
         card_number = info[-16:]
         masked_number = f"{card_number[:4]} {card_number[4:6]}** **** {card_number[-4:]}"
         return f"{card} {masked_number}"
-    elif info.startswith("Счет"):
-        account_number = info[-20:]
-        masked_number = f"**{account_number[-4:]}"
-        return f"Счет {masked_number}"
 
 
 def format_transaction_date(date_str):
